@@ -54,3 +54,7 @@ cd google-cli
 sudo make install
 cd ..
 rm -rf google-cli
+
+git clone git://github.com/rupa/z
+mv z/z.sh ~
+rm -rf z

@@ -33,6 +33,8 @@ alias ....='cd ../../..'
 
 set -o vi
 
+. ~/z.sh
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
