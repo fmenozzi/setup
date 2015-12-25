@@ -10,7 +10,7 @@ sudo apt-get update
 sudo apt-get install wget curl vim build-essential htop guake tree valgrind ubuntu-restricted-extras cmake cmake-curses-gui
 
 # 2) Compilers and runtimes
-sudo apt-get install g++
+sudo apt-get install g++ clang clang++
 sudo add-apt-repository ppa:openjdk-r/ppa -y
 sudo apt-get update
 sudo apt-get install openjdk-8-jdk
