@@ -40,7 +40,7 @@ sudo pip install joe harvey thefuck howdoi
 sudo add-apt-repository ppa:tualatrix/ppa -y
 sudo add-apt-repository ppa:noobslab/icons -y
 sudo apt-get update
-sudo apt-get install ubuntu-tweak ultra-flat-icons
+sudo apt-get install ubuntu-tweak ultra-flat-icons unity-tweak-tool
 mkdir -p ~/.themes
 
 # 6) Bash and vim
