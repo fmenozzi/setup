@@ -6,7 +6,6 @@ chmod +x update.sh
 cp update.sh ~/update.sh
 
 # 1) Basics
-sudo apt-get update
 sudo apt-get install wget curl vim build-essential htop guake tree valgrind ubuntu-restricted-extras cmake cmake-curses-gui
 
 # 2) Compilers and runtimes
