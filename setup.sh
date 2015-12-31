@@ -48,7 +48,7 @@ mkdir -p ~/.themes
 # 6) Bash and vim
 cp .bashrc ~/.bashrc
 cp .vimrc ~/.vimrc
-cp -r .vim ~/.vim
+cp -r .vim/* ~/.vim
 
 # 7) Miscellaneous
 git clone https://github.com/jarun/google-cli/
