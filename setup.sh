@@ -32,6 +32,8 @@ git config --global alias.unstash "stash pop"
 git config --global alias.discard "checkout --"
 git config --global alias.last "log -1 HEAD"
 git config --global alias.unstage "reset HEAD --"
+git config --global alias.supdate "submodule update --remote --merge"
+git config --global alias.spush "push --recursive-submodules=on-demand"
 
 # 4) Python and related tools
 sudo apt-get install python-pip python-dev -y
