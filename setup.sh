@@ -9,7 +9,7 @@ cp update.sh ~/update.sh
 sudo apt-get install wget curl vim build-essential htop guake tree valgrind ubuntu-restricted-extras cmake cmake-curses-gui
 
 # 2) Compilers and runtimes
-sudo apt-get install g++ clang-3.6
+sudo apt-get install g++ clang-3.6 ruby-dev
 sudo ln -s /usr/bin/clang-3.6 /usr/bin/clang
 sudo ln -s /usr/bin/clang++-3.6 /usr/bin/clang++
 sudo add-apt-repository ppa:openjdk-r/ppa -y
@@ -61,3 +61,5 @@ rm -rf google-cli
 git clone git://github.com/rupa/z
 mv z/z.sh ~
 rm -rf z
+
+sudo gem install bropages
