@@ -6,7 +6,7 @@ chmod +x update.sh
 cp update.sh ~/update.sh
 
 # 1) Basics
-sudo apt-get install wget curl vim build-essential htop guake tree valgrind ubuntu-restricted-extras cmake cmake-curses-gui
+sudo apt-get install wget curl vim build-essential htop guake tree valgrind ubuntu-restricted-extras cmake cmake-curses-gui vlc
 
 # 2) Compilers and runtimes
 sudo apt-get install g++ clang-3.6 ruby-dev
