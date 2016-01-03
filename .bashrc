@@ -198,4 +198,4 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1="$bldwht\u$bldgrn\$(__git_ps1)$bldred \W $ $reset"
 
 export PATH=~/Desktop/depot_tools:"$PATH"
-
+export GOPATH=~/go
