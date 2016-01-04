@@ -47,9 +47,19 @@ sudo apt-get install ubuntu-tweak ultra-flat-icons unity-tweak-tool
 mkdir -p ~/.themes
 
 # 6) Bash and vim
-cp .bashrc ~/.bashrc
-cp .vimrc ~/.vimrc
-cp -r .vim/* ~/.vim
+cp .bashrc ~
+cp .vimrc ~
+cp -r .vim/ ~
+mkdir -p ~/.vim/bundle/delimitMate
+mkdir -p ~/.vim/bundle/vim-gitgutter
+mkdir -p ~/.vim/bundle/vim-multiple-cursors
+mkdir -p ~/.vim/bundle/rust.vim
+mkdir -p ~/.vim/bundle/vim-go
+git clone https://github.com/Raimondi/delimitMate ~/.vim/bundle/delimitMate
+git clone https://github.com/airblade/vim-gitgutter ~/.vim/bundle/vim-gitgutter
+git clone https://github.com/terryma/vim-multiple-cursors ~/.vim/bundle/vim-multiple-cursors
+git clone https://github.com/rust-lang/rust.vim ~/.vim/bundle/rust.vim
+git clone https://github.com/fatih/vim-go ~/.vim/bundle/vim-go
 
 # 7) Miscellaneous
 git clone https://github.com/jarun/google-cli/
