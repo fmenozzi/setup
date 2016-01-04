@@ -1,6 +1,9 @@
 # Script for setting up new personalized Linux dev environment
 
 # 0) Update
+sudo add-apt-repository ppa:openjdk-r/ppa -y
+sudo add-apt-repository ppa:tualatrix/ppa -y
+sudo add-apt-repository ppa:noobslab/icons -y
 chmod +x update.sh
 ./update.sh
 cp update.sh ~/update.sh
@@ -12,8 +15,6 @@ sudo apt-get install wget curl vim build-essential htop guake tree valgrind ubun
 sudo apt-get install g++ clang-3.6 ruby-dev golang
 sudo ln -s /usr/bin/clang-3.6 /usr/bin/clang
 sudo ln -s /usr/bin/clang++-3.6 /usr/bin/clang++
-sudo add-apt-repository ppa:openjdk-r/ppa -y
-sudo apt-get update
 sudo apt-get install openjdk-8-jdk
 curl -sf -L https://static.rust-lang.org/rustup.sh | sh
 
@@ -40,9 +41,6 @@ sudo apt-get install python-pip python-dev -y
 sudo pip install joe harvey thefuck howdoi
 
 # 5) Flat icon theme
-sudo add-apt-repository ppa:tualatrix/ppa -y
-sudo add-apt-repository ppa:noobslab/icons -y
-sudo apt-get update
 sudo apt-get install ubuntu-tweak ultra-flat-icons unity-tweak-tool
 mkdir -p ~/.themes
 
