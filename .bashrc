@@ -33,6 +33,8 @@ alias ....='cd ../../..'
 
 set -o vi
 
+export _Z_CMD=f
+
 . ~/z.sh
 
 # If not running interactively, don't do anything
