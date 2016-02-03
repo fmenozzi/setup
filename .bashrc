@@ -27,6 +27,8 @@ alias chrome='google-chrome-stable'
 alias g='googler'
 alias j='jobs'
 
+alias lc='wc -l'
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
