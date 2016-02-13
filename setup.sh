@@ -37,8 +37,9 @@ git config --global alias.supdate "submodule update --remote --merge"
 git config --global alias.spush "push --recursive-submodules=on-demand"
 
 # 4) Python and related tools
-sudo apt-get install python-pip python-dev -y
+sudo apt-get install python-pip python-dev python3-pip -y
 sudo pip install joe harvey thefuck howdoi
+sudo pip3 install todocli
 
 # 5) Flat icon theme
 sudo apt-get install ubuntu-tweak ultra-flat-icons unity-tweak-tool
