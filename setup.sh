@@ -71,4 +71,6 @@ git clone git://github.com/rupa/z
 mv z/z.sh ~
 rm -rf z
 
+sudo apt-get install freeglut3 freeglut3-dev
+
 sudo gem install bropages
