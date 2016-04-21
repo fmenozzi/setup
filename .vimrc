@@ -18,3 +18,4 @@ set expandtab
 set smarttab
 
 set splitright
+set splitbelow
