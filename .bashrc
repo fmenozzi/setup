@@ -29,6 +29,8 @@ alias j='jobs'
 
 alias lc='wc -l'
 
+alias na='ninja'
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
