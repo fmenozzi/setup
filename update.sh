@@ -9,5 +9,3 @@ for i in `ls`; do
     git pull
     cd ..
 done
-
-gem update bropages
