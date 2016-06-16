@@ -2,7 +2,6 @@
 
 # 0) Update
 sudo add-apt-repository ppa:openjdk-r/ppa -y
-sudo add-apt-repository ppa:tualatrix/ppa -y
 sudo add-apt-repository ppa:noobslab/icons -y
 chmod +x update.sh
 ./update.sh
@@ -61,7 +60,10 @@ git clone https://github.com/terryma/vim-multiple-cursors ~/.vim/bundle/vim-mult
 git clone https://github.com/rust-lang/rust.vim ~/.vim/bundle/rust.vim
 git clone https://github.com/fatih/vim-go ~/.vim/bundle/vim-go
 
-# 7) Miscellaneous
+# 7) Graphics
+sudo apt-get install libxrandr-dev libxinerama-dev libxcursor-dev mesa-utils
+
+# 8) Miscellaneous
 git clone https://github.com/jarun/google-cli/
 cd google-cli
 sudo make install
@@ -71,5 +73,3 @@ rm -rf google-cli
 git clone git://github.com/rupa/z
 mv z/z.sh ~
 rm -rf z
-
-sudo apt-get install freeglut3 freeglut3-dev
