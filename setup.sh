@@ -14,7 +14,7 @@ sudo apt-get install wget curl vim htop guake tree ubuntu-restricted-extras vlc
 sudo apt-get install cmake cmake-curses-gui ninja-build valgrind build-essential
 
 # 2) Compilers and runtimes
-sudo apt-get install g++ golang
+sudo apt-get install g++ clang golang
 sudo apt-get install openjdk-8-jdk
 curl -sf -L https://static.rust-lang.org/rustup.sh | sh
 
