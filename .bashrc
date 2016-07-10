@@ -8,7 +8,7 @@ alias sl='ls'
 
 alias gits='git status'
 alias gitl='git log'
-alias gitd='git diff --color | diff-so-fancy'
+alias gitd='git diff'
 
 alias clear='clear'
 alias clare='clear'
