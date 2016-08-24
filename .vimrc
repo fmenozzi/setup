@@ -12,9 +12,13 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'fatih/vim-go'
 call vundle#end()
 
-" Begin actual .vimrc
 filetype plugin indent on
 syntax on
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 set number
 
