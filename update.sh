@@ -3,6 +3,7 @@ sudo apt-get upgrade
 sudo apt-get autoremove
 sudo apt-get clean
 
+mkdir -p ~/.vim/bundle
 cd ~/.vim/bundle
 for i in `ls`; do
     cd "$i"
