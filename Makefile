@@ -8,16 +8,16 @@ update:
 	@cp update.sh ~/update.sh
 
 basics: update
-	@sudo apt-get install wget curl vim htop guake tree ubuntu-restricted-extras vlc
+	@sudo apt-get install wget curl vim htop guake tree ubuntu-restricted-extras vlc -y
 
 langs: basics
-	@sudo apt-get install g++ clang golang npm
-	@sudo apt-get install openjdk-8-jdk
+	@sudo apt-get install g++ clang golang npm -y
+	@sudo apt-get install openjdk-8-jdk -y
 	@sudo apt-get install python-pip python-dev python3-pip python3-dev -y
 	@curl -sf -L https://static.rust-lang.org/rustup.sh | sh
 
 tools: langs
-	@sudo apt-get install cmake cmake-curses-gui ninja-build valgrind build-essential
+	@sudo apt-get install cmake cmake-curses-gui ninja-build valgrind build-essential -y
 	@sudo pip install joe harvey thefuck howdoi
 	@sudo pip3 install todocli
 
@@ -53,11 +53,11 @@ vim: tools langs
 	@vim +PluginInstall +qall
 
 theme:
-	@sudo apt-get install ubuntu-tweak ultra-flat-icons unity-tweak-tool
+	@sudo apt-get install ubuntu-tweak ultra-flat-icons unity-tweak-tool -y
 	@mkdir -p ~/.themes
 
 graphics:
-	@sudo apt-get install libxrandr-dev libxinerama-dev libxcursor-dev mesa-utils
+	@sudo apt-get install libxrandr-dev libxinerama-dev libxcursor-dev mesa-utils -y
 
 google-cli:
 	@git clone https://github.com/jarun/google-cli/
