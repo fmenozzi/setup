@@ -1,5 +1,18 @@
-execute pathogen#infect()
+set nocompatible
+filetype off
 
+" Plugins!
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'rust-lang/rust.vim'
+Plugin 'fatih/vim-go'
+call vundle#end()
+
+" Begin actual .vimrc
 filetype plugin indent on
 syntax on
 
@@ -17,5 +30,5 @@ set softtabstop=4
 set expandtab
 set smarttab
 
-set splitright
 set splitbelow
+set splitright
