@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/menozzi/Dropbox/unc/year-4/fall/comp575-001-intro-to-computer-graphics/pa0'
-let g:netrw_dirhist_2='/home/menozzi/torch/install'
-let g:netrw_dirhist_3='/home/menozzi/Dropbox/unc/year-4/fall/comp633-001-parallel-and-distributed-computing/programming-assignments/pa1a'
