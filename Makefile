@@ -53,6 +53,7 @@ vim: tools langs
 	@cp .vimrc ~
 	@vim +PluginInstall +qall
 	@cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer --gocode-completer --racer-completer --tern-completer
+	@cp .ycm_extra_conf.py ~/.vim/.ycm_extra_conf.py
 
 theme:
 	@sudo apt-get install ultra-flat-icons unity-tweak-tool -y

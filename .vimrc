@@ -33,7 +33,7 @@ let g:gitgutter_sign_column_always=1
 let g:gitgutter_realtime=1
 set updatetime=750
 
-let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 
 set tabstop=4
 set shiftwidth=4
