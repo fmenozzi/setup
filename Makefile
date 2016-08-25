@@ -53,7 +53,7 @@ vim: tools langs
 	@vim +PluginInstall +qall
 
 theme:
-	@sudo apt-get install ubuntu-tweak ultra-flat-icons unity-tweak-tool -y
+	@sudo apt-get install ultra-flat-icons unity-tweak-tool -y
 	@mkdir -p ~/.themes
 
 graphics:
