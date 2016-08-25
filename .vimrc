@@ -34,6 +34,7 @@ let g:gitgutter_realtime=1
 set updatetime=750
 
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_completion=1
 
 set tabstop=4
 set shiftwidth=4
