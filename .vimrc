@@ -10,6 +10,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'rust-lang/rust.vim'
 Plugin 'fatih/vim-go'
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 
 filetype plugin indent on
@@ -31,6 +32,8 @@ let delimitMate_expand_cr=1
 let g:gitgutter_sign_column_always=1
 let g:gitgutter_realtime=1
 set updatetime=750
+
+let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
 set tabstop=4
 set shiftwidth=4
