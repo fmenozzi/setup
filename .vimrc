@@ -36,6 +36,7 @@ set updatetime=750
 
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_confirm_extra_conf=0
 map f :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 set tabstop=4
