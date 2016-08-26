@@ -201,7 +201,7 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 # '\u' adds the name of the current user to the prompt
 # '\$(__git_ps1)' adds git-related stuff
 # '\W' adds the name of the current directory
-export PS1="$bldwht\W$bldgrn\$(__git_ps1)$bldcyn ➜  $reset"
+export PS1="\[$bldwht\]\W\[$bldgrn\]\$(__git_ps1)\[$bldcyn\] ➜  $reset"
 
 export PATH=~/Desktop/depot_tools:"$PATH"
 export GOPATH=~/go
