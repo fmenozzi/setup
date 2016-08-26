@@ -198,10 +198,8 @@ txtrst='\e[0m'    # Text Reset
 # Change command prompt
 source ~/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=1
-# '\u' adds the name of the current user to the prompt
-# '\$(__git_ps1)' adds git-related stuff
 # '\W' adds the name of the current directory
+# '\$(__git_ps1)' adds git-related stuff
 export PS1="\[$bldwht\]\W\[$bldgrn\]\$(__git_ps1)\[$bldcyn\] ➜  $reset"
 
-export PATH=~/Desktop/depot_tools:"$PATH"
 export GOPATH=~/go
