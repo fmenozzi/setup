@@ -12,6 +12,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'fatih/vim-go'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tikhomirov/vim-glsl'
 call vundle#end()
 
 filetype plugin indent on
