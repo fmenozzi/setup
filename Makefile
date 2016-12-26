@@ -14,7 +14,8 @@ langs: basics
 	@sudo apt-get install g++ clang golang npm -y
 	@sudo apt-get install openjdk-8-jdk -y
 	@sudo apt-get install python-pip python-dev python3-pip python3-dev -y
-	@curl -sf -L https://static.rust-lang.org/rustup.sh | sh
+	@curl https://sh.rustup.rs -sSf | sh
+	@source ~/.cargo/env
 
 tools: langs
 	@sudo apt-get install cmake cmake-curses-gui ninja-build valgrind build-essential -y
