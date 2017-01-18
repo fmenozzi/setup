@@ -43,6 +43,7 @@ git: langs
 	@git config --global alias.unstage "reset HEAD --"
 	@git config --global alias.supdate "submodule update --remote --merge"
 	@git config --global alias.spush "push --recursive-submodules=on-demand"
+	@sudo cp git-map-branches /usr/local/bin/
 
 bash:
 	@cp .bashrc ~
