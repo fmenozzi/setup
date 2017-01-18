@@ -48,3 +48,5 @@ set smarttab
 
 set splitbelow
 set splitright
+
+set pastetoggle=<F2>
