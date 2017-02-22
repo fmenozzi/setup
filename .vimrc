@@ -23,6 +23,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+inoremap jj <esc>
+inoremap <esc> <nop>
+
 set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
