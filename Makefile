@@ -54,6 +54,7 @@ vim: tools langs
 	@git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
 	@cp .vimrc ~
 	@cp .ideavimrc ~
+	@cp .inputrc ~
 	@vim +PluginInstall +qall
 	@cd ~/.vim/bundle/YouCompleteMe && ./install.py --gocode-completer --racer-completer
 
