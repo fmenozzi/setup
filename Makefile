@@ -77,3 +77,7 @@ z:
 	@rm -rf z
 
 misc: theme graphics google-cli z
+
+copy-dotfiles:
+	@cp .vimrc ~/.vimrc
+	@cp .bashrc ~/.bashrc
