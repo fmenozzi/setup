@@ -13,6 +13,8 @@ Plugin 'fatih/vim-go'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tikhomirov/vim-glsl'
+Plugin 'vim-airline/vim-airline'
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 
 filetype plugin indent on
@@ -42,6 +44,9 @@ let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_confirm_extra_conf=0
 map f :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+set laststatus=2
+set t_Co=256
 
 set tabstop=4
 set shiftwidth=4
