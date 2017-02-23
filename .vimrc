@@ -50,6 +50,16 @@ map f :YcmCompleter GoToDefinitionElseDeclaration<CR>
 set laststatus=2
 set t_Co=256
 
+let g:airline_theme = 'bubblegum'
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.branch = ''
+let g:airline#extensions#hunks#enabled = 0
+let g:airline_section_y = ''
+
 set noshowmode
 
 set tabstop=4
