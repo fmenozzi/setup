@@ -48,6 +48,8 @@ map f :YcmCompleter GoToDefinitionElseDeclaration<CR>
 set laststatus=2
 set t_Co=256
 
+set noshowmode
+
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
