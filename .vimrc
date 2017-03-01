@@ -36,6 +36,8 @@ nnoremap <space> za
 
 set number
 
+set cursorline
+
 let delimitMate_expand_cr=1
 
 let g:gitgutter_sign_column_always=1
