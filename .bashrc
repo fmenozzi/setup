@@ -35,6 +35,8 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+alias tmux='tmux -2'
+
 set -o vi
 
 export _Z_CMD=f
