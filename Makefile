@@ -18,7 +18,7 @@ langs: basics
 	@source ~/.cargo/env
 
 tools: langs
-	@sudo apt-get install cmake cmake-curses-gui ninja-build valgrind build-essential -y
+	@sudo apt-get install cmake cmake-curses-gui ninja-build valgrind build-essential clang-tidy clang-format -y
 	@sudo pip install joe harvey thefuck howdoi
 	@sudo pip3 install todocli
 
