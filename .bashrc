@@ -9,6 +9,7 @@ alias sl='ls'
 alias gits='git status'
 alias gitl='git log'
 alias gitd='git diff'
+alias gitdc='git diff --cached'
 
 alias clear='clear'
 alias clare='clear'
