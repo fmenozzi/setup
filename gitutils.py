@@ -42,3 +42,26 @@ def upstream(branch=None):
     git("checkout", [tmp, "-q"])
 
     return possible_upstream
+
+# Return list of all remote branch names
+def remotes():
+    # Exclude remote HEAD
+    verbose_remote_branches = [l.strip() for l in git("branch", ["-rvv"]).splitlines() if "HEAD" not in l]
+
+    remote_branches = []
+
+    for verbose_remote_branch in verbose_remote_branches:
+        verbose_branch_info = verbose_remote_branch.split()
+
+        name_idx = 1 if verbose_branch_info[0] == "*" else 0
+
+        remote_branches.append(verbose_branch_info[name_idx])
+
+    return remote_branches
+
+# Determine whether branch name corresponds to a remote branch
+def is_remote(branch):
+    return branch in remotes()
+
+if __name__ == "__main__":
+    print remotes()
