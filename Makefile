@@ -86,3 +86,4 @@ copy-dotfiles:
 setup-custom-git-commands:
 	@sudo cp gitutils.py /usr/local/bin
 	@sudo cp git-map-branches /usr/local/bin/
+	@sudo cp git-new-branch /usr/local/bin/
