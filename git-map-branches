@@ -1,35 +1,19 @@
 #!/usr/bin/env python
 
+import gitutils
+
 import argparse
-import subprocess
 import sys
 
 NO_UPSTREAM = "{NO_UPSTREAM}"
 
-# Helper wrapper class around common git commands
-class Git:
-    # Run single git command
-    @staticmethod
-    def git(cmd, args=[]):
-        try:
-            return subprocess.check_output(["git", cmd] + args)
-        except:
-            return None
-
-    @staticmethod
-    def branches():
-        return [line.strip() for line in Git.git("branch").splitlines()]
-
-    @staticmethod
-    def current_branch():
-        return next(b[2:] for b in Git.branches() if b.startswith("* "))
-
 def colorprint(text, color, bold, no_color):
-    attr = []
     if not sys.stdout.isatty() or no_color:
         print text
         return
-    elif color == "red":
+
+    attr = []
+    if color == "red":
         attr.append("31")
     elif color == "cyan":
         attr.append("36")
@@ -58,21 +42,13 @@ def visit(branch, indent, all_branches, upstreams, current_branch, no_color):
         visit(child, indent + "  ", all_branches, upstreams, current_branch, no_color)
 
 def main(no_color):
-    verbose_branches = [line.strip() for line in Git.git("branch", ["-vv"]).splitlines()]
-
     upstreams = {}
 
     all_branches = set()
 
-    for verbose_branch in verbose_branches:
-        verbose_branch_info = verbose_branch.split()
-
-        name_idx = 1 if verbose_branch_info[0] == "*" else 0
-
-        branch   = verbose_branch_info[name_idx]
-
-        possible_upstream = verbose_branch_info[name_idx+2][1:-1]
-        upstream = possible_upstream if verbose_branch_info[name_idx+2].startswith("[") else NO_UPSTREAM
+    for branch in gitutils.branches():
+        possible_upstream = gitutils.upstream(branch)
+        upstream = possible_upstream if possible_upstream else NO_UPSTREAM
 
         all_branches.add(branch)
         all_branches.add(upstream)
@@ -82,7 +58,7 @@ def main(no_color):
         if upstream not in upstreams:
             upstreams[upstream] = None
 
-    current_branch = Git.current_branch()
+    current_branch = gitutils.current_branch()
 
     rootlist = [branch for branch in all_branches if upstreams[branch] == None]
     for root in rootlist:

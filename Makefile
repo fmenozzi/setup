@@ -82,3 +82,7 @@ copy-dotfiles:
 	@cp .vimrc ~/.vimrc
 	@cp .bashrc ~/.bashrc
 	@cp .tmux.conf ~/.tmux.conf
+
+setup-custom-git-commands:
+	@sudo cp gitutils.py /usr/local/bin
+	@sudo cp git-map-branches /usr/local/bin/
