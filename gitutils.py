@@ -1,6 +1,9 @@
 import subprocess
 import os
 
+NO_UPSTREAM = "{NO_UPSTREAM}"
+REMOTE = "{REMOTE}"
+
 # Run single git command
 def git(cmd, args=[], stdin=None, stderr=None, shell=False, universal_newlines=False):
     try:
@@ -31,7 +34,8 @@ def upstream(branch=None):
     cmd = "rev-parse"
     args = ["--abbrev-ref", "--symbolic-full-name", "@{upstream}"]
 
-    git("checkout", [branch, "-q"])
+    if branch:
+        git("checkout", [branch, "-q"])
 
     cmd = "rev-parse"
     args = ["--abbrev-ref", "--symbolic-full-name", "@{upstream}"]
@@ -39,9 +43,43 @@ def upstream(branch=None):
     if possible_upstream:
         possible_upstream = possible_upstream.strip()
 
-    git("checkout", [tmp, "-q"])
+    if branch:
+        git("checkout", [tmp, "-q"])
 
     return possible_upstream
+
+# Return all upstreams in a dict (fewer subprocess calls than
+# calling upstream(branch) for all branches. Upstream name can
+# be "{NO_UPSTREAM}" or "{REMOTE}" for those cases.
+def upstreams():
+    # Exclude remote HEAD
+    verbose_all_branches = [l.strip() for l in git("branch", ["-avv"]).splitlines() if "HEAD" not in l]
+
+    all_upstreams = {}
+    for verbose_branch in verbose_all_branches:
+        verbose_branch_info = verbose_branch.split()
+
+        name_idx = 1 if verbose_branch_info[0] == "*" else 0
+
+        branch_name = verbose_branch_info[name_idx]
+
+        possible_upstream_name = verbose_branch_info[name_idx+2][1:-1]
+
+        upstream_name = None
+        if verbose_branch_info[name_idx+2].startswith("["):
+            # Regular upstream
+            upstream_name = possible_upstream_name
+        elif branch_name.startswith("remotes"):
+            # Remote branch, no upstream
+            branch_name = branch_name[8:]
+            upstream_name = REMOTE
+        else:
+            # Local branch, no upstream
+            upstream_name = NO_UPSTREAM
+
+        all_upstreams[branch_name] = upstream_name
+
+    return all_upstreams
 
 # Return list of all remote branch names
 def remotes():
@@ -64,4 +102,5 @@ def is_remote(branch):
     return branch in remotes()
 
 if __name__ == "__main__":
-    print remotes()
+    for branch, upstream in upstreams().iteritems():
+        print branch, "_____________", upstream

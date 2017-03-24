@@ -5,7 +5,8 @@ import gitutils
 import argparse
 import sys
 
-NO_UPSTREAM = "{NO_UPSTREAM}"
+REMOTE = gitutils.REMOTE
+NO_UPSTREAM = gitutils.NO_UPSTREAM
 
 def colorprint(text, color, bold, no_color):
     if not sys.stdout.isatty() or no_color:
@@ -30,11 +31,10 @@ def colorprint(text, color, bold, no_color):
 def visit(branch, indent, all_branches, upstreams, current_branch, no_color):
     if branch == current_branch:
         colorprint("%s%s *" % (indent, branch), "cyan", True, no_color)
-    elif upstreams[branch] == None:
-        if branch == NO_UPSTREAM:
-            colorprint("%s%s" % (indent, branch), "purple", False, no_color)
-        else:
-            colorprint("%s%s" % (indent, branch), "red", True, no_color)
+    elif branch == NO_UPSTREAM:
+        colorprint("%s%s" % (indent, branch), "purple", False, no_color)
+    elif branch in upstreams and upstreams[branch] == REMOTE:
+        colorprint("%s%s" % (indent, branch), "red", True, no_color)
     else:
         colorprint("%s%s" % (indent, branch), "green", False, no_color)
 
@@ -42,25 +42,19 @@ def visit(branch, indent, all_branches, upstreams, current_branch, no_color):
         visit(child, indent + "  ", all_branches, upstreams, current_branch, no_color)
 
 def main(no_color):
-    upstreams = {}
+    upstreams = gitutils.upstreams()
 
-    all_branches = set()
-
-    for branch in gitutils.branches():
-        possible_upstream = gitutils.upstream(branch)
-        upstream = possible_upstream if possible_upstream else NO_UPSTREAM
-
-        all_branches.add(branch)
-        all_branches.add(upstream)
-
-        # Create upstream mappings
-        upstreams[branch] = upstream
-        if upstream not in upstreams:
-            upstreams[upstream] = None
-
+    all_branches = set(upstreams.keys())
     current_branch = gitutils.current_branch()
 
-    rootlist = [branch for branch in all_branches if upstreams[branch] == None]
+    # Get remote roots
+    rootlist = [b for b in all_branches if upstreams[b] == REMOTE]
+
+    # Add local roots
+    num_local_roots = sum(map(lambda b: upstreams[b] == NO_UPSTREAM, all_branches))
+    if num_local_roots > 0:
+        rootlist.append(NO_UPSTREAM * num_local_roots)
+
     for root in rootlist:
         visit(root, "", all_branches, upstreams, current_branch, no_color)
 
