@@ -84,6 +84,7 @@ copy-dotfiles:
 
 setup-custom-git-commands: bash
 	@mkdir -p ~/.custom-git-commands/
+	@rm -rf ~/.custom-git-commands/*
 	@cp gitutils.py ~/.custom-git-commands
 	@cp git-map-branches ~/.custom-git-commands
 	@cp git-new-branch ~/.custom-git-commands
