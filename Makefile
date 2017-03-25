@@ -43,7 +43,6 @@ git: langs
 	@git config --global alias.unstage "reset HEAD --"
 	@git config --global alias.supdate "submodule update --remote --merge"
 	@git config --global alias.spush "push --recursive-submodules=on-demand"
-	@sudo cp git-map-branches /usr/local/bin/
 
 bash:
 	@cp .bashrc ~
@@ -83,7 +82,8 @@ copy-dotfiles:
 	@cp .bashrc ~/.bashrc
 	@cp .tmux.conf ~/.tmux.conf
 
-setup-custom-git-commands:
-	@sudo cp gitutils.py /usr/local/bin
-	@sudo cp git-map-branches /usr/local/bin/
-	@sudo cp git-new-branch /usr/local/bin/
+setup-custom-git-commands: bash
+	@mkdir -p ~/.custom-git-commands/
+	@cp gitutils.py ~/.custom-git-commands
+	@cp git-map-branches ~/.custom-git-commands
+	@cp git-new-branch ~/.custom-git-commands

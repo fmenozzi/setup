@@ -208,3 +208,5 @@ export GIT_PS1_SHOWUNTRACKEDFILES=1
 export PS1="\[$bldwht\]\W\[$bldgrn\]\$(__git_ps1)\[$bldcyn\] ➜  $reset"
 
 export GOPATH=~/go
+
+export PATH=$PATH:~/.custom-git-commands
