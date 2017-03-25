@@ -11,6 +11,10 @@ def git(cmd, args=[], stdin=None, stderr=None, shell=False, universal_newlines=F
     except:
         return None
 
+# Determine if in git repo
+def in_git_repo():
+    return git("rev-parse") == ""
+
 # Get list of all branches in current directory
 def branches(include_asterisk=False):
     branches_with_asterisk = [line.strip() for line in git("branch").splitlines()]

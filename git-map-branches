@@ -42,6 +42,9 @@ def visit(branch, indent, all_branches, upstreams, current_branch, no_color):
         visit(child, indent + "  ", all_branches, upstreams, current_branch, no_color)
 
 def main(no_color):
+    if not gitutils.in_git_repo():
+        return
+
     upstreams = gitutils.upstreams()
 
     all_branches = set(upstreams.keys())

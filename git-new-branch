@@ -5,6 +5,9 @@ import gitutils
 import argparse
 
 def main(new_branch, no_set_upstream, no_checkout):
+    if not gitutils.in_git_repo():
+        return
+
     old_branch = gitutils.current_branch()
 
     gitutils.git("branch", [new_branch])
