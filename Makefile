@@ -87,4 +87,4 @@ setup-custom-git-commands: bash
 	@rm -rf ~/.custom-git-commands/*
 	@cp gitutils.py ~/.custom-git-commands
 	@cp git-map-branches ~/.custom-git-commands
-	@cp git-new-branch ~/.custom-git-commands
+	@cp git-new-feature-branch ~/.custom-git-commands
