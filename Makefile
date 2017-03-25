@@ -1,4 +1,4 @@
-all: update basics tools langs git bash vim misc
+all: update basics tools langs git bash vim setup-custom-git-commands misc
 
 update:
 	@sudo add-apt-repository ppa:openjdk-r/ppa -y
