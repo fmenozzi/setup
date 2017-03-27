@@ -1,9 +1,6 @@
 import subprocess
 import os
 
-NO_UPSTREAM = "{NO_UPSTREAM}"
-REMOTE = "{REMOTE}"
-
 # Run single git command
 def git(cmd, args=[], stdin=None, stderr=None, shell=False, universal_newlines=False):
     try:
@@ -52,39 +49,6 @@ def upstream(branch=None):
 
     return possible_upstream
 
-# Return all upstreams in a dict (fewer subprocess calls than
-# calling upstream(branch) for all branches. Upstream name can
-# be "{NO_UPSTREAM}" or "{REMOTE}" for those cases.
-def upstreams():
-    # Exclude remote HEAD
-    verbose_all_branches = [l.strip() for l in git("branch", ["-avv"]).splitlines() if "HEAD" not in l]
-
-    all_upstreams = {}
-    for verbose_branch in verbose_all_branches:
-        verbose_branch_info = verbose_branch.split()
-
-        name_idx = 1 if verbose_branch_info[0] == "*" else 0
-
-        branch_name = verbose_branch_info[name_idx]
-
-        possible_upstream_name = verbose_branch_info[name_idx+2][1:-1]
-
-        upstream_name = None
-        if verbose_branch_info[name_idx+2].startswith("["):
-            # Regular upstream
-            upstream_name = possible_upstream_name
-        elif branch_name.startswith("remotes"):
-            # Remote branch, no upstream
-            branch_name = branch_name[8:]
-            upstream_name = REMOTE
-        else:
-            # Local branch, no upstream
-            upstream_name = NO_UPSTREAM
-
-        all_upstreams[branch_name] = upstream_name
-
-    return all_upstreams
-
 # Return list of all remote branch names
 def remotes():
     # Exclude remote HEAD
@@ -97,14 +61,60 @@ def remotes():
 
         name_idx = 1 if verbose_branch_info[0] == "*" else 0
 
-        remote_branches.append(verbose_branch_info[name_idx])
+        remote_branches.append("remotes/" + verbose_branch_info[name_idx])
 
     return remote_branches
 
+# Return all upstreams in a dict (fewer subprocess calls than
+# calling upstream(branch) for all branches). Upstream name can
+# be None if branch is a remote or if there is no upstream.
+def upstreams():
+    # Exclude remote HEAD
+    verbose_all_branches = [l.strip() for l in git("branch", ["-avv"]).splitlines() if "HEAD" not in l]
+
+    all_remotes = remotes()
+    all_upstreams = {}
+
+    for verbose_branch in verbose_all_branches:
+        verbose_branch_info = verbose_branch.split()
+
+        name_idx = 1 if verbose_branch_info[0] == "*" else 0
+
+        branch_name = verbose_branch_info[name_idx]
+
+        possible_upstream_name = verbose_branch_info[name_idx+2][1:-1]
+
+        if branch_name.startswith("remotes/"):
+            # Remote branch with no upstream
+            all_upstreams[branch_name] = None
+        elif verbose_branch_info[name_idx+2].startswith("["):
+            # Local branch with local or remote upstream
+            if "remotes/" + possible_upstream_name in all_remotes:
+                possible_upstream_name = "remotes/" + possible_upstream_name
+            all_upstreams[branch_name] = possible_upstream_name
+        else:
+            # Local branch with no upstream
+            all_upstreams[branch_name] = None
+
+    return all_upstreams
+
 # Determine whether branch name corresponds to a remote branch
 def is_remote(branch):
-    return branch in remotes()
+    return branch.startswith("remotes/")
 
 if __name__ == "__main__":
+    tab = "    "
+
+    print "BRANCHES"
+    for branch in branches():
+        print tab, branch
+    print
+
+    print "REMOTES"
+    for remote in remotes():
+        print tab, remote
+    print
+
+    print "UPSTREAMS"
     for branch, upstream in upstreams().iteritems():
-        print branch, "_____________", upstream
+        print tab, branch, upstream
