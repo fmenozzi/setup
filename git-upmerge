@@ -9,22 +9,46 @@ import argparse
     2) Set branch to be original branch
     3) Loop
         a) Get upstream
-        b) If upstream is None, we're at 
+        b) If upstream is not REMOTE and not NO_UPSTREAM:
+            b1) Checkout upstream
+            b2) Merge branch into upstream
+            b3) Set branch to upstream
+            b4) Continue
+        c) Else, if upstrea
 """
 
 def main(push):
+    if not gitutils.in_git_repo():
+        return
+
     original_branch = gitutils.current_branch()
 
+    upstreams = gitutils.upstreams()
+
+    for branch, upstream in upstreams.iteritems():
+        print branch, upstream
+
     branch = str(original_branch)
-    tree = [branch]
     while True:
-        upstream = gitutils.upstream(branch)
-        if not upstream:
+        upstream = upstreams[branch]
+
+        if upstream == gitutils.NO_UPSTREAM:
             break
-        tree.append(upstream)
+
+        if upstream in upstreams and upstreams[upstream] == gitutils.REMOTE:
+            if push:
+                #print "git push"
+                gitutils.git("push")
+            break
+
+        #print "git checkout", upstream
+        #print "git merge", branch
+        gitutils.git("checkout", [upstream])
+        gitutils.git("merge", [branch])
+
         branch = upstream
 
-    #gitutils.git("checkout", [original_branch, "-q"])
+    gitutils.git("checkout", [original_branch, "-q"])
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
