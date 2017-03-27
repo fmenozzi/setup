@@ -88,3 +88,4 @@ setup-custom-git-commands: bash
 	@cp gitutils.py ~/.custom-git-commands
 	@cp git-map-branches ~/.custom-git-commands
 	@cp git-new-feature-branch ~/.custom-git-commands
+	@cp git-upmerge ~/.custom-git-commands
