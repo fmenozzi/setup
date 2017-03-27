@@ -4,19 +4,6 @@ import gitutils
 
 import argparse
 
-"""
-    1) Save original branch
-    2) Set branch to be original branch
-    3) Loop
-        a) Get upstream
-        b) If upstream is not REMOTE and not NO_UPSTREAM:
-            b1) Checkout upstream
-            b2) Merge branch into upstream
-            b3) Set branch to upstream
-            b4) Continue
-        c) Else, if upstrea
-"""
-
 def main(push):
     if not gitutils.in_git_repo():
         return
@@ -25,29 +12,27 @@ def main(push):
 
     upstreams = gitutils.upstreams()
 
-    for branch, upstream in upstreams.iteritems():
-        print branch, upstream
-
     branch = str(original_branch)
     while True:
         upstream = upstreams[branch]
 
-        if upstream == gitutils.NO_UPSTREAM:
+        if not gitutils.is_remote(branch) and not upstream:
             break
 
-        if upstream in upstreams and upstreams[upstream] == gitutils.REMOTE:
+        if gitutils.is_remote(upstream):
             if push:
-                #print "git push"
-                gitutils.git("push")
+                print "git push"
+                #gitutils.git("push")
             break
 
-        #print "git checkout", upstream
-        #print "git merge", branch
-        gitutils.git("checkout", [upstream])
-        gitutils.git("merge", [branch])
+        print "git checkout", upstream
+        print "git merge", branch
+        #gitutils.git("checkout", [upstream, "-q"])
+        #gitutils.git("merge", [branch])
 
         branch = upstream
 
+    print "git checkout", original_branch
     gitutils.git("checkout", [original_branch, "-q"])
 
 if __name__ == "__main__":
