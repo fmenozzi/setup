@@ -5,8 +5,7 @@ import gitutils
 import argparse
 import sys
 
-REMOTE = gitutils.REMOTE
-NO_UPSTREAM = gitutils.NO_UPSTREAM
+NO_UPSTREAM = "{NO_UPSTREAM}"
 
 def colorprint(text, color, bold, no_color):
     if not sys.stdout.isatty() or no_color:
@@ -33,12 +32,16 @@ def visit(branch, indent, all_branches, upstreams, current_branch, no_color):
         colorprint("%s%s *" % (indent, branch), "cyan", True, no_color)
     elif branch == NO_UPSTREAM:
         colorprint("%s%s" % (indent, branch), "purple", False, no_color)
-    elif branch in upstreams and upstreams[branch] == REMOTE:
-        colorprint("%s%s" % (indent, branch), "red", True, no_color)
+    elif gitutils.is_remote(branch) and not upstreams[branch]:
+        colorprint("%s%s" % (indent, branch[8:]), "red", True, no_color)
     else:
         colorprint("%s%s" % (indent, branch), "green", False, no_color)
 
-    for child in [b for b in all_branches if upstreams[b] == branch]:
+    children = [b for b in all_branches if upstreams[b] == branch]
+    if branch == NO_UPSTREAM:
+        children += [b for b in all_branches if not gitutils.is_remote(b) and not upstreams[b]]
+
+    for child in children:
         visit(child, indent + "  ", all_branches, upstreams, current_branch, no_color)
 
 def main(no_color):
@@ -51,12 +54,12 @@ def main(no_color):
     current_branch = gitutils.current_branch()
 
     # Get remote roots
-    rootlist = [b for b in all_branches if upstreams[b] == REMOTE]
+    rootlist = gitutils.remotes()
 
     # Add local roots
-    num_local_roots = sum(map(lambda b: upstreams[b] == NO_UPSTREAM, all_branches))
+    num_local_roots = sum(map(lambda b: b not in rootlist and not upstreams[b], all_branches))
     if num_local_roots > 0:
-        rootlist.append(NO_UPSTREAM * num_local_roots)
+        rootlist.append(NO_UPSTREAM)
 
     for root in rootlist:
         visit(root, "", all_branches, upstreams, current_branch, no_color)
