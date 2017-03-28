@@ -13,20 +13,17 @@ def in_git_repo():
     return git("rev-parse") == ""
 
 # Get list of all branches in current directory
-def branches(include_asterisk=False):
+def branches():
     branches_with_asterisk = [line.strip() for line in git("branch").splitlines()]
-    if include_asterisk:
-        return branches_with_asterisk
-    else:
-        branches_without_asterisk = list(branches_with_asterisk)
-        for idx, branch in enumerate(branches_with_asterisk):
-            if branch.startswith("* "):
-                branches_without_asterisk[idx] = branch[2:]
-        return branches_without_asterisk
+    branches_without_asterisk = list(branches_with_asterisk)
+    for idx, branch in enumerate(branches_with_asterisk):
+        if branch.startswith("* "):
+            branches_without_asterisk[idx] = branch[2:]
+    return branches_without_asterisk
 
 # Get current active git branch
 def current_branch():
-    return next(b[2:] for b in branches(True) if b.startswith("*"))
+    return git("rev-parse", ["--abbrev-ref", "HEAD"]).strip()
 
 # Get branch's upstream (or current branch if None)
 def upstream(branch=None):
