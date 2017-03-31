@@ -8,7 +8,7 @@ update:
 	@cp update.sh ~/update.sh
 
 basics: update
-	@sudo apt-get install wget curl vim tmux htop guake tree ubuntu-restricted-extras vlc -y
+	@sudo apt-get install wget curl vim tmux htop guake tree ubuntu-restricted-extras vlc bash-completion -y
 
 langs: basics
 	@sudo apt-get install g++ clang golang npm -y
