@@ -210,3 +210,30 @@ export PS1="\[$bldwht\]\W\[$bldgrn\]\$(__git_ps1)\[$bldcyn\] ➜  $reset"
 export GOPATH=~/go
 
 export PATH=$PATH:~/.custom-git-commands
+
+# "Alias" for "tmux a -t <session>" (with tab completion)
+ta()
+{
+    local session_name="$1"
+    tmux a -t "$session_name"
+}
+_ta()
+{
+    COMPREPLY=()
+    local session="${COMP_WORDS[COMP_CWORD]}"
+    COMPREPLY=( $(compgen -W "$(tmux list-sessions 2>/dev/null | awk -F: '{ print $1 }')" -- "$session") )
+}
+complete -F _ta ta
+
+# "Alias" for "tmux new -s <session>" (no tab completion)
+tn()
+{
+    local session_name="$1"
+    tmux new -s "$session_name"
+}
+
+# "Alias" for "tmux ls"
+tl()
+{
+    tmux ls
+}
