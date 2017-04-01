@@ -212,13 +212,11 @@ export GOPATH=~/go
 export PATH=$PATH:~/.custom-git-commands
 
 # "Alias" for "tmux a -t <session>" (with tab completion)
-ta()
-{
+ta() {
     local session_name="$1"
     tmux a -t "$session_name"
 }
-_ta()
-{
+_ta() {
     COMPREPLY=()
     local session="${COMP_WORDS[COMP_CWORD]}"
     COMPREPLY=( $(compgen -W "$(tmux list-sessions 2>/dev/null | awk -F: '{ print $1 }')" -- "$session") )
@@ -226,14 +224,12 @@ _ta()
 complete -F _ta ta
 
 # "Alias" for "tmux new -s <session>" (no tab completion)
-tn()
-{
+tn() {
     local session_name="$1"
     tmux new -s "$session_name"
 }
 
 # "Alias" for "tmux ls"
-tl()
-{
+tl() {
     tmux ls
 }
