@@ -81,6 +81,8 @@ copy-dotfiles:
 	@cp .vimrc ~/.vimrc
 	@cp .bashrc ~/.bashrc
 	@cp .tmux.conf ~/.tmux.conf
+	@cp .ghci ~/.ghci
+	@chmod go-w ~/.ghci
 
 setup-custom-git-commands: bash
 	@mkdir -p ~/.custom-git-commands/
