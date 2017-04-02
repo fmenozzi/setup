@@ -223,13 +223,26 @@ _ta() {
 }
 complete -F _ta ta
 
-# "Alias" for "tmux new -s <session>" (no tab completion)
+# "Alias" for "tmux new -s <session>"
 tn() {
     local session_name="$1"
     tmux new -s "$session_name"
 }
 
-# "Alias" for "tmux ls"
+# "Alias" for "tmux ls" (prettier output)
 tl() {
-    tmux ls
+    # Get current session name (empty string if detached)
+    local session_name=$(tmux ls -F '#{session_name} #{session_attached}' | awk '$2=="1" {print $1}')
+
+    # Print each session, with a different color for the current one
+    IFS=$'\n'
+    local all_session_names=($(tmux ls -F '#{session_name}'))
+    for s in "${all_session_names[@]}"; do
+        if [ "$s" == "$session_name" ]; then
+            echo -e "${bldcyn}$s *${txtrst}"
+        else
+            echo -e "${txtgrn}$s${txtrst}"
+        fi
+    done
+    unset IFS
 }
