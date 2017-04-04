@@ -11,7 +11,7 @@ basics: update
 	@sudo apt-get install wget curl vim tmux htop guake tree ubuntu-restricted-extras vlc bash-completion -y
 
 langs: basics
-	@sudo apt-get install g++ clang golang npm -y
+	@sudo apt-get install g++ clang golang npm ghc -y
 	@sudo apt-get install openjdk-8-jdk -y
 	@sudo apt-get install python-pip python-dev python3-pip python3-dev -y
 	@curl https://sh.rustup.rs -sSf | sh
