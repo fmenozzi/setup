@@ -81,6 +81,7 @@ misc: theme graphics google-cli z
 copy-dotfiles:
 	@cp .vimrc ~/.vimrc
 	@cp .bashrc ~/.bashrc
+	@cp .rustup-completions.sh ~/.rustup-completions.sh
 	@cp .tmux.conf ~/.tmux.conf
 	@cp .ghci ~/.ghci
 	@chmod go-w ~/.ghci
