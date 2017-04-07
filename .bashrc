@@ -211,6 +211,8 @@ export GOPATH=~/go
 
 export PATH=$PATH:~/.custom-git-commands
 
+export RUST_SRC_PATH=~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/
+
 # Add rustup completions
 source ~/.rustup-completions.sh
 
