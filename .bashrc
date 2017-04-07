@@ -211,6 +211,9 @@ export GOPATH=~/go
 
 export PATH=$PATH:~/.custom-git-commands
 
+# Add rustup completions
+source ~/.rustup-completions.sh
+
 # "Alias" for "tmux a -t <session>" (with tab completion)
 ta() {
     local session_name="$1"

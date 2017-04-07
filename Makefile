@@ -46,6 +46,7 @@ git: langs
 
 bash:
 	@cp .bashrc ~
+	@cp .rustup-completions.sh ~
 
 vim: tools langs
 	@rm -rf ~/.vim
