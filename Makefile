@@ -36,6 +36,7 @@ git: langs
 	@git config --global alias.co "checkout"
 	@git config --global alias.cm "commit"
 	@git config --global alias.br "branch"
+	@git config --global alias.last "log -1 HEAD"
 	@git config --global alias.unstash "stash pop"
 	@git config --global alias.stashes "stash list"
 	@git config --global alias.discard "checkout --"
